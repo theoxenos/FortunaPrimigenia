@@ -1,4 +1,6 @@
-namespace FortunaPrimigenia.Api.Models;
+using System.Text.Json.Serialization;
+
+namespace FortunaPrimigenia.Api.Models.Domain;
 
 public record Account
 {
@@ -10,5 +12,6 @@ public record Account
     public bool IsOnBudget { get; set; }
     public required DateTime CreatedAt { get; set; }
     public required DateTime UpdatedAt { get; set; }
-    public List<Transaction> Transactions { get; set; } = [];
+
+    [JsonIgnore] public List<Transaction> Transactions { get; set; } = [];
 }

@@ -1,4 +1,4 @@
-using FortunaPrimigenia.Api.Models;
+using FortunaPrimigenia.Api.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace FortunaPrimigenia.Api.Data;

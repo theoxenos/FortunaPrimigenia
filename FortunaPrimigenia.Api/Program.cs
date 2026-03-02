@@ -1,4 +1,6 @@
 using FortunaPrimigenia.Api.Data;
+using FortunaPrimigenia.Api.Repositories;
+using FortunaPrimigenia.Api.Services;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -17,6 +19,10 @@ builder.Services.AddDbContext<FortunaPrimigeniaContext>(options =>
     options.UseSqlite(connectionString,
         sqliteOptions => sqliteOptions.MigrationsAssembly(typeof(FortunaPrimigeniaContext).Assembly.FullName));
 });
+
+builder.Services.AddScoped<IAccountsRepository, AccountsRepository>();
+
+builder.Services.AddScoped<IAccountsService, AccountsService>();
 
 var app = builder.Build();
 

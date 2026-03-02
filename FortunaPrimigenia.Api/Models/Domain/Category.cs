@@ -1,4 +1,4 @@
-namespace FortunaPrimigenia.Api.Models;
+namespace FortunaPrimigenia.Api.Models.Domain;
 
 public record Category
 {
