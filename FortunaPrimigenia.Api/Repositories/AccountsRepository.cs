@@ -10,7 +10,7 @@ public interface IAccountsRepository
     Task<List<Account>> GetAllAccountsAsync();
     Task<Account?> GetAccountByIdAsync(int accountId);
     Task<Account?> GetAccountByNameAsync(string accountName);
-    Task<Account> UpdateAccountAsync(Account account);
+    Task<Account?> UpdateAccountAsync(Account account);
     Task<bool> DeleteAccountAsync(int accountId);
 }
 
@@ -38,8 +38,12 @@ public class AccountsRepository(FortunaPrimigeniaContext dbContext) : IAccountsR
         return await dbContext.Accounts.FirstOrDefaultAsync(a => a.Name == accountName);
     }
 
-    public async Task<Account> UpdateAccountAsync(Account account)
+    public async Task<Account?> UpdateAccountAsync(Account account)
     {
+        var existingAccount = await dbContext.Accounts.AsNoTracking().FirstOrDefaultAsync(a => a.Id == account.Id);
+        if (existingAccount is null)
+            return null;
+
         dbContext.Accounts.Update(account);
         await dbContext.SaveChangesAsync();
         return account;

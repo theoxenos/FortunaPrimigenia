@@ -10,25 +10,29 @@ public interface IAccountsService
     Task<List<Account>> GetAllAccountsAsync();
     Task<Account?> GetAccountByIdAsync(int accountId);
     Task<Account?> GetAccountByNameAsync(string accountName);
-    Task<Account> UpdateAccountAsync(Account account);
+    Task<Account?> UpdateAccountAsync(Account account);
     Task DeleteAccountAsync(int accountId);
 }
 
 public class AccountsService(IAccountsRepository accountsRepository) : IAccountsService
 {
-    public Task<Account> CreateAccountAsync(CreateAccountDto account)
+    public async Task<Account> CreateAccountAsync(CreateAccountDto account)
     {
+        var existingAccount = await accountsRepository.GetAccountByNameAsync(account.Name);
+        if (existingAccount is not null)
+            throw new ArgumentException($"Account with name '{account.Name}' already exists.");
+
         var newAccount = new Account
         {
             Name = account.Name,
             Balance = account.Balance,
             Currency = account.Currency,
             Type = account.Type,
-            CreatedAt = default,
-            UpdatedAt = default,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow,
             IsOnBudget = account.IsOnBudget
         };
-        return accountsRepository.CreateAccountAsync(newAccount);
+        return await accountsRepository.CreateAccountAsync(newAccount);
     }
 
     public Task<List<Account>> GetAllAccountsAsync()
@@ -46,7 +50,7 @@ public class AccountsService(IAccountsRepository accountsRepository) : IAccounts
         return accountsRepository.GetAccountByNameAsync(accountName);
     }
 
-    public Task<Account> UpdateAccountAsync(Account account)
+    public Task<Account?> UpdateAccountAsync(Account account)
     {
         return accountsRepository.UpdateAccountAsync(account);
     }

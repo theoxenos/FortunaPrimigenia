@@ -10,8 +10,8 @@ public record Account
     public required string Currency { get; set; }
     public required string Type { get; set; }
     public bool IsOnBudget { get; set; }
-    public required DateTime CreatedAt { get; set; }
-    public required DateTime UpdatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     [JsonIgnore] public List<Transaction> Transactions { get; set; } = [];
 }

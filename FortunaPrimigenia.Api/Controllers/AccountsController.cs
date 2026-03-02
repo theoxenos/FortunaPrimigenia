@@ -12,7 +12,20 @@ public class AccountsController(IAccountsService accountsService) : ControllerBa
     [HttpPost]
     public async Task<ActionResult<Account>> CreateAccountAsync([FromBody] CreateAccountDto account)
     {
-        return Ok(await accountsService.CreateAccountAsync(account));
+        try
+        {
+            var created = await accountsService.CreateAccountAsync(account);
+            return CreatedAtAction(nameof(GetAccountByIdAsync),
+                new
+                {
+                    accountId = created.Id
+                },
+                created);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]
@@ -22,6 +35,7 @@ public class AccountsController(IAccountsService accountsService) : ControllerBa
     }
 
     [HttpGet("{accountId}")]
+    [ActionName(nameof(GetAccountByIdAsync))]
     public async Task<ActionResult<Account?>> GetAccountByIdAsync(int accountId)
     {
         var account = await accountsService.GetAccountByIdAsync(accountId);
@@ -38,13 +52,26 @@ public class AccountsController(IAccountsService accountsService) : ControllerBa
     [HttpPut("{accountId}")]
     public async Task<ActionResult<Account>> UpdateAccountAsync(int accountId, [FromBody] Account updatedAccount)
     {
-        return Ok(await accountsService.UpdateAccountAsync(updatedAccount));
+        if (updatedAccount is null) return BadRequest("Updated account cannot be null");
+        if (accountId != updatedAccount.Id) return BadRequest("Account ID does not match route parameter");
+
+        var account = await accountsService.UpdateAccountAsync(updatedAccount);
+        return account is null ? NotFound() : Ok(account);
     }
 
     [HttpDelete("{accountId}")]
     public async Task<ActionResult> DeleteAccountAsync(int accountId)
     {
-        await accountsService.DeleteAccountAsync(accountId);
+        if (accountId <= 0) return BadRequest("Account ID must be positive");
+        try
+        {
+            await accountsService.DeleteAccountAsync(accountId);
+        }
+        catch (InvalidOperationException)
+        {
+            return NotFound();
+        }
+
         return NoContent();
     }
 }
