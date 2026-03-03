@@ -1,3 +1,4 @@
+using FortunaPrimigenia.Api.Helpers;
 using FortunaPrimigenia.Api.Models.Domain;
 using FortunaPrimigenia.Api.Models.DTO;
 using FortunaPrimigenia.Api.Repositories;
@@ -22,17 +23,7 @@ public class AccountService(IAccountRepository accountRepository) : IAccountsSer
         if (existingAccount is not null)
             throw new ArgumentException($"Account with name '{account.Name}' already exists.");
 
-        var newAccount = new Account
-        {
-            Name = account.Name,
-            Balance = account.Balance,
-            Currency = account.Currency,
-            Type = account.Type,
-            CreatedDate = DateTime.UtcNow,
-            ModifiedDate = DateTime.UtcNow,
-            IsOnBudget = account.IsOnBudget
-        };
-        return await accountRepository.CreateAccountAsync(newAccount);
+        return await accountRepository.CreateAccountAsync(account.MapCreateAccountDtoToAccountModel());
     }
 
     public Task<List<Account>> GetAllAccountsAsync()
