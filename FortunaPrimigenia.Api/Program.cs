@@ -20,10 +20,10 @@ builder.Services.AddDbContext<FortunaPrimigeniaContext>(options =>
         sqliteOptions => sqliteOptions.MigrationsAssembly(typeof(FortunaPrimigeniaContext).Assembly.FullName));
 });
 
-builder.Services.AddScoped<IAccountsRepository, AccountsRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
-builder.Services.AddScoped<IAccountsService, AccountsService>();
+builder.Services.AddScoped<IAccountsService, AccountService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 var app = builder.Build();

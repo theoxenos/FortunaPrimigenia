@@ -14,11 +14,11 @@ public interface IAccountsService
     Task DeleteAccountAsync(int accountId);
 }
 
-public class AccountsService(IAccountsRepository accountsRepository) : IAccountsService
+public class AccountService(IAccountRepository accountRepository) : IAccountsService
 {
     public async Task<Account> CreateAccountAsync(CreateAccountDto account)
     {
-        var existingAccount = await accountsRepository.GetAccountByNameAsync(account.Name);
+        var existingAccount = await accountRepository.GetAccountByNameAsync(account.Name);
         if (existingAccount is not null)
             throw new ArgumentException($"Account with name '{account.Name}' already exists.");
 
@@ -32,32 +32,32 @@ public class AccountsService(IAccountsRepository accountsRepository) : IAccounts
             ModifiedDate = DateTime.UtcNow,
             IsOnBudget = account.IsOnBudget
         };
-        return await accountsRepository.CreateAccountAsync(newAccount);
+        return await accountRepository.CreateAccountAsync(newAccount);
     }
 
     public Task<List<Account>> GetAllAccountsAsync()
     {
-        return accountsRepository.GetAllAccountsAsync();
+        return accountRepository.GetAllAccountsAsync();
     }
 
     public Task<Account?> GetAccountByIdAsync(int accountId)
     {
-        return accountsRepository.GetAccountByIdAsync(accountId);
+        return accountRepository.GetAccountByIdAsync(accountId);
     }
 
     public Task<Account?> GetAccountByNameAsync(string accountName)
     {
-        return accountsRepository.GetAccountByNameAsync(accountName);
+        return accountRepository.GetAccountByNameAsync(accountName);
     }
 
     public Task<Account?> UpdateAccountAsync(Account account)
     {
-        return accountsRepository.UpdateAccountAsync(account);
+        return accountRepository.UpdateAccountAsync(account);
     }
 
     public async Task DeleteAccountAsync(int accountId)
     {
-        var successfulDelete = await accountsRepository.DeleteAccountAsync(accountId);
+        var successfulDelete = await accountRepository.DeleteAccountAsync(accountId);
         if (!successfulDelete) throw new InvalidOperationException($"Account {accountId} not found");
     }
 }

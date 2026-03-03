@@ -6,15 +6,15 @@ using Moq;
 
 namespace FortunaPrimigenia.Api.Tests.Unit.Services;
 
-public class AccountsServiceTests
+public class AccountServiceTests
 {
-    private readonly Mock<IAccountsRepository> _accountsRepositoryMock;
-    private readonly AccountsService _accountsService;
+    private readonly AccountService _accountService;
+    private readonly Mock<IAccountRepository> _accountsRepositoryMock;
 
-    public AccountsServiceTests()
+    public AccountServiceTests()
     {
-        _accountsRepositoryMock = new Mock<IAccountsRepository>();
-        _accountsService = new AccountsService(_accountsRepositoryMock.Object);
+        _accountsRepositoryMock = new Mock<IAccountRepository>();
+        _accountService = new AccountService(_accountsRepositoryMock.Object);
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class AccountsServiceTests
             .ReturnsAsync((Account account) => account);
 
         // Act
-        var result = await _accountsService.CreateAccountAsync(createAccountDto);
+        var result = await _accountService.CreateAccountAsync(createAccountDto);
 
         // Assert
         Assert.NotNull(result);
@@ -71,7 +71,7 @@ public class AccountsServiceTests
             .ReturnsAsync((Account account) => account);
 
         // Act
-        var result = await _accountsService.CreateAccountAsync(createAccountDto);
+        var result = await _accountService.CreateAccountAsync(createAccountDto);
 
         // Assert
         Assert.Equal(balance, result.Balance);
@@ -109,7 +109,7 @@ public class AccountsServiceTests
             .ReturnsAsync(accounts);
 
         // Act
-        var result = await _accountsService.GetAllAccountsAsync();
+        var result = await _accountService.GetAllAccountsAsync();
 
         // Assert
         Assert.NotNull(result);
@@ -125,7 +125,7 @@ public class AccountsServiceTests
             .ReturnsAsync([]);
 
         // Act
-        var result = await _accountsService.GetAllAccountsAsync();
+        var result = await _accountService.GetAllAccountsAsync();
 
         // Assert
         Assert.NotNull(result);
@@ -152,7 +152,7 @@ public class AccountsServiceTests
             .ReturnsAsync(expectedAccount);
 
         // Act
-        var result = await _accountsService.GetAccountByIdAsync(accountId);
+        var result = await _accountService.GetAccountByIdAsync(accountId);
 
         // Assert
         Assert.NotNull(result);
@@ -169,7 +169,7 @@ public class AccountsServiceTests
             .ReturnsAsync((Account?)null);
 
         // Act
-        var result = await _accountsService.GetAccountByIdAsync(accountId);
+        var result = await _accountService.GetAccountByIdAsync(accountId);
 
         // Assert
         Assert.Null(result);
@@ -195,7 +195,7 @@ public class AccountsServiceTests
             .ReturnsAsync(expectedAccount);
 
         // Act
-        var result = await _accountsService.GetAccountByNameAsync(accountName);
+        var result = await _accountService.GetAccountByNameAsync(accountName);
 
         // Assert
         Assert.NotNull(result);
@@ -211,7 +211,7 @@ public class AccountsServiceTests
             .ReturnsAsync((Account?)null);
 
         // Act
-        var result = await _accountsService.GetAccountByNameAsync(accountName);
+        var result = await _accountService.GetAccountByNameAsync(accountName);
 
         // Assert
         Assert.Null(result);
@@ -236,7 +236,7 @@ public class AccountsServiceTests
             .ReturnsAsync(accountToUpdate);
 
         // Act
-        var result = await _accountsService.UpdateAccountAsync(accountToUpdate);
+        var result = await _accountService.UpdateAccountAsync(accountToUpdate);
 
         // Assert
         Assert.NotNull(result);
@@ -253,7 +253,7 @@ public class AccountsServiceTests
             .ReturnsAsync(true);
 
         // Act
-        var exception = await Record.ExceptionAsync(() => _accountsService.DeleteAccountAsync(accountId));
+        var exception = await Record.ExceptionAsync(() => _accountService.DeleteAccountAsync(accountId));
 
         // Assert
         Assert.Null(exception);
@@ -270,7 +270,7 @@ public class AccountsServiceTests
 
         // Act & Assert
         var exception =
-            await Assert.ThrowsAsync<InvalidOperationException>(() => _accountsService.DeleteAccountAsync(accountId));
+            await Assert.ThrowsAsync<InvalidOperationException>(() => _accountService.DeleteAccountAsync(accountId));
         Assert.Equal($"Account {accountId} not found", exception.Message);
         _accountsRepositoryMock.Verify(repo => repo.DeleteAccountAsync(accountId), Times.Once);
     }
@@ -286,7 +286,7 @@ public class AccountsServiceTests
             .ReturnsAsync(existingAccount);
 
         // Act & Assert
-        var exception = await Assert.ThrowsAsync<ArgumentException>(() => _accountsService.CreateAccountAsync(dto));
+        var exception = await Assert.ThrowsAsync<ArgumentException>(() => _accountService.CreateAccountAsync(dto));
         Assert.Equal($"Account with name '{dto.Name}' already exists.", exception.Message);
 
         _accountsRepositoryMock.Verify(repo => repo.CreateAccountAsync(It.IsAny<Account>()), Times.Never);
@@ -301,7 +301,7 @@ public class AccountsServiceTests
             .ReturnsAsync((Account?)null);
 
         // Act
-        var result = await _accountsService.UpdateAccountAsync(account);
+        var result = await _accountService.UpdateAccountAsync(account);
 
         // Assert
         Assert.Null(result);

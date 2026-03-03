@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FortunaPrimigenia.Api.Repositories;
 
-public interface IAccountsRepository
+public interface IAccountRepository
 {
     Task<Account> CreateAccountAsync(Account account);
     Task<List<Account>> GetAllAccountsAsync();
@@ -14,7 +14,7 @@ public interface IAccountsRepository
     Task<bool> DeleteAccountAsync(int accountId);
 }
 
-public class AccountsRepository(FortunaPrimigeniaContext dbContext) : IAccountsRepository
+public class AccountRepository(FortunaPrimigeniaContext dbContext) : IAccountRepository
 {
     public async Task<Account> CreateAccountAsync(Account account)
     {
