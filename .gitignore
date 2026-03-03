@@ -59,8 +59,7 @@ nunit-*.xml
 *.user
 
 # SQLite
-*.sqlite
-*.sqlite3
+*.sqlite*
 *.db
 
 # SQL Server
