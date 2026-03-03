@@ -90,8 +90,8 @@ public class AccountsServiceTests
                 Balance = 100,
                 Currency = "USD",
                 Type = "Checking",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
+                ModifiedDate = DateTime.UtcNow
             },
             new()
             {
@@ -100,8 +100,8 @@ public class AccountsServiceTests
                 Balance = 200,
                 Currency = "EUR",
                 Type = "Savings",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
+                ModifiedDate = DateTime.UtcNow
             }
         };
 
@@ -144,8 +144,8 @@ public class AccountsServiceTests
             Balance = 100,
             Currency = "USD",
             Type = "Checking",
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+            CreatedDate = DateTime.UtcNow,
+            ModifiedDate = DateTime.UtcNow
         };
 
         _accountsRepositoryMock.Setup(repo => repo.GetAccountByIdAsync(accountId))
@@ -187,8 +187,8 @@ public class AccountsServiceTests
             Balance = 100,
             Currency = "USD",
             Type = "Checking",
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+            CreatedDate = DateTime.UtcNow,
+            ModifiedDate = DateTime.UtcNow
         };
 
         _accountsRepositoryMock.Setup(repo => repo.GetAccountByNameAsync(accountName))
@@ -228,8 +228,8 @@ public class AccountsServiceTests
             Balance = 500,
             Currency = "USD",
             Type = "Checking",
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+            CreatedDate = DateTime.UtcNow,
+            ModifiedDate = DateTime.UtcNow
         };
 
         _accountsRepositoryMock.Setup(repo => repo.UpdateAccountAsync(accountToUpdate))
@@ -269,7 +269,8 @@ public class AccountsServiceTests
             .ReturnsAsync(false);
 
         // Act & Assert
-        var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => _accountsService.DeleteAccountAsync(accountId));
+        var exception =
+            await Assert.ThrowsAsync<InvalidOperationException>(() => _accountsService.DeleteAccountAsync(accountId));
         Assert.Equal($"Account {accountId} not found", exception.Message);
         _accountsRepositoryMock.Verify(repo => repo.DeleteAccountAsync(accountId), Times.Once);
     }
@@ -287,7 +288,7 @@ public class AccountsServiceTests
         // Act & Assert
         var exception = await Assert.ThrowsAsync<ArgumentException>(() => _accountsService.CreateAccountAsync(dto));
         Assert.Equal($"Account with name '{dto.Name}' already exists.", exception.Message);
-        
+
         _accountsRepositoryMock.Verify(repo => repo.CreateAccountAsync(It.IsAny<Account>()), Times.Never);
     }
 

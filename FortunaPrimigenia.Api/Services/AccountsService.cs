@@ -28,8 +28,8 @@ public class AccountsService(IAccountsRepository accountsRepository) : IAccounts
             Balance = account.Balance,
             Currency = account.Currency,
             Type = account.Type,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+            ModifiedDate = DateTime.UtcNow,
             IsOnBudget = account.IsOnBudget
         };
         return await accountsRepository.CreateAccountAsync(newAccount);

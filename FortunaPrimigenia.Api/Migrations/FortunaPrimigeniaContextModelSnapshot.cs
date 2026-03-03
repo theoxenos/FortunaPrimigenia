@@ -17,7 +17,7 @@ namespace FortunaPrimigenia.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
 
-            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Account", b =>
+            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Domain.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,9 +52,9 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Category", b =>
+            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Domain.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -65,90 +65,120 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CategoryId");
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
-                            CategoryId = 1,
+                            Id = 1,
                             CategoryName = "Food",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 2,
+                            Id = 2,
                             CategoryName = "Fuel",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 3,
+                            Id = 3,
                             CategoryName = "Entertainment",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 4,
+                            Id = 4,
                             CategoryName = "Groceries",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 5,
+                            Id = 5,
                             CategoryName = "Health",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 6,
+                            Id = 6,
                             CategoryName = "Education",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 7,
+                            Id = 7,
                             CategoryName = "Household Goods",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 8,
+                            Id = 8,
                             CategoryName = "Other",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            CategoryId = 9,
-                            CategoryName = "Income",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true
+                            Id = 9,
+                            CategoryName = "Income This Month",
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryName = "Income Next Month",
+                            CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 0,
+                            IsActive = true,
+                            ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
-            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Transaction", b =>
+            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Domain.Transaction", b =>
                 {
-                    b.Property<int>("TransactionId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("AccountId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("AvailableDate")
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
@@ -179,7 +209,7 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TransactionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AccountId");
 
@@ -188,15 +218,15 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Transaction", b =>
+            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Domain.Transaction", b =>
                 {
-                    b.HasOne("FortunaPrimigenia.Api.Models.Account", "Account")
+                    b.HasOne("FortunaPrimigenia.Api.Models.Domain.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FortunaPrimigenia.Api.Models.Category", "Category")
+                    b.HasOne("FortunaPrimigenia.Api.Models.Domain.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -207,7 +237,7 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Account", b =>
+            modelBuilder.Entity("FortunaPrimigenia.Api.Models.Domain.Account", b =>
                 {
                     b.Navigation("Transactions");
                 });

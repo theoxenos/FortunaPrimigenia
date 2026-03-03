@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FortunaPrimigenia.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class BaseMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,22 +36,24 @@ namespace FortunaPrimigenia.Api.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CategoryName = table.Column<string>(type: "TEXT", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Transactions",
                 columns: table => new
                 {
-                    TransactionId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AccountId = table.Column<int>(type: "INTEGER", nullable: false),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -61,13 +63,12 @@ namespace FortunaPrimigenia.Api.Migrations
                     OutflowAmount = table.Column<decimal>(type: "TEXT", nullable: false),
                     IsCleared = table.Column<bool>(type: "INTEGER", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    AvailableDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transactions", x => x.TransactionId);
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Transactions_Accounts_AccountId",
                         column: x => x.AccountId,
@@ -78,24 +79,25 @@ namespace FortunaPrimigenia.Api.Migrations
                         name: "FK_Transactions_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "CategoryId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "CategoryName", "CreatedDate", "IsActive" },
+                columns: new[] { "Id", "CategoryName", "CreatedDate", "DisplayOrder", "IsActive", "ModifiedDate" },
                 values: new object[,]
                 {
-                    { 1, "Food", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 2, "Fuel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 3, "Entertainment", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 4, "Groceries", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 5, "Health", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 6, "Education", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 7, "Household Goods", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 8, "Other", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
-                    { 9, "Income", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true }
+                    { 1, "Food", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 2, "Fuel", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 3, "Entertainment", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 4, "Groceries", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 5, "Health", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 6, "Education", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 7, "Household Goods", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 8, "Other", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 9, "Income This Month", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 10, "Income Next Month", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.CreateIndex(
