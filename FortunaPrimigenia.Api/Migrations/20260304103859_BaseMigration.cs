@@ -24,8 +24,8 @@ namespace FortunaPrimigenia.Api.Migrations
                     Currency = table.Column<string>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
                     IsOnBudget = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,8 +63,8 @@ namespace FortunaPrimigenia.Api.Migrations
                     OutflowAmount = table.Column<decimal>(type: "TEXT", nullable: false),
                     IsCleared = table.Column<bool>(type: "INTEGER", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,16 +88,16 @@ namespace FortunaPrimigenia.Api.Migrations
                 columns: new[] { "Id", "CategoryName", "CreatedDate", "DisplayOrder", "IsActive", "ModifiedDate" },
                 values: new object[,]
                 {
-                    { 1, "Food", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 2, "Fuel", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 3, "Entertainment", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 4, "Groceries", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 5, "Health", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 6, "Education", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 7, "Household Goods", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 8, "Other", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 9, "Income This Month", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
-                    { 10, "Income Next Month", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 0, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) }
+                    { 1, "Food", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 1, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 2, "Fuel", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 2, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 3, "Entertainment", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 3, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 4, "Groceries", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 4, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 5, "Health", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 5, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 6, "Education", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 6, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 7, "Household Goods", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 7, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 8, "Other", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 8, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 9, "Income This Month", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 9, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) },
+                    { 10, "Income Next Month", new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc), 10, true, new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.CreateIndex(

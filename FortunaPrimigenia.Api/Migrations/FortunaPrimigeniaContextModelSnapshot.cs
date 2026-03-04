@@ -26,7 +26,7 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Currency")
@@ -36,15 +36,15 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.Property<bool>("IsOnBudget")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -84,7 +84,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 1,
                             CategoryName = "Food",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 1,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -93,7 +93,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 2,
                             CategoryName = "Fuel",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 2,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -102,7 +102,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 3,
                             CategoryName = "Entertainment",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 3,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -111,7 +111,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 4,
                             CategoryName = "Groceries",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 4,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -120,7 +120,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 5,
                             CategoryName = "Health",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 5,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -129,7 +129,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 6,
                             CategoryName = "Education",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 6,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -138,7 +138,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 7,
                             CategoryName = "Household Goods",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 7,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -147,7 +147,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 8,
                             CategoryName = "Other",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 8,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -156,7 +156,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 9,
                             CategoryName = "Income This Month",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 9,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -165,7 +165,7 @@ namespace FortunaPrimigenia.Api.Migrations
                             Id = 10,
                             CategoryName = "Income Next Month",
                             CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 0,
+                            DisplayOrder = 10,
                             IsActive = true,
                             ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, 0, DateTimeKind.Utc)
                         });
@@ -183,7 +183,7 @@ namespace FortunaPrimigenia.Api.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("InflowAmount")
@@ -196,9 +196,6 @@ namespace FortunaPrimigenia.Api.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("OutflowAmount")
                         .HasColumnType("TEXT");
 
@@ -207,6 +204,9 @@ namespace FortunaPrimigenia.Api.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
