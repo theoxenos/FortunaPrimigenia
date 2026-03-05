@@ -1,0 +1,152 @@
+@baseUrl = http://localhost:5296/Transactions
+
+### Create Transaction with valid data
+POST {{baseUrl}}
+Content-Type: application/json
+
+[
+  {
+    "accountId": 1,
+    "categoryId": 10,
+    "payee": "Employer",
+    "memo": "Your salary for March",
+    "inflowAmount": 100,
+    "outflowAmount": 0,
+    "isCleared": false,
+    "transactionDate": "2026-03-15"
+  }
+]
+
+### Create Transactions with valid data
+POST {{baseUrl}}
+Content-Type: application/json
+
+[
+  {
+    "accountId": 1,
+    "categoryId": 10,
+    "payee": "Employer",
+    "memo": "Your salary for March",
+    "inflowAmount": 100,
+    "outflowAmount": 0,
+    "isCleared": false,
+    "transactionDate": "2026-03-15"
+  },
+  {
+    "accountId": 1,
+    "categoryId": 8,
+    "payee": "Landlord",
+    "memo": "The rent for march",
+    "outflowAmount": 800,
+    "transactionDate": "2026-03-01"
+  }
+]
+
+### Create Transactions with no data (Should fail)
+POST {{baseUrl}}
+Content-Type: application/json
+
+[]
+
+### Create Transaction with both in- and outflow (Should fail)
+POST {{baseUrl}}
+Content-Type: application/json
+
+[
+  {
+    "accountId": 1,
+    "categoryId": 10,
+    "payee": "Employer",
+    "memo": "Your salary for March",
+    "inflowAmount": 100,
+    "outflowAmount": 900,
+    "isCleared": false,
+    "transactionDate": "2026-03-15"
+  }
+]
+
+### Create Transaction with no date (Should fail)
+POST {{baseUrl}}
+Content-Type: application/json
+
+[
+  {
+    "accountId": 1,
+    "categoryId": 10,
+    "payee": "Employer",
+    "memo": "Your salary for March",
+    "inflowAmount": 100,
+    "outflowAmount": 900,
+    "isCleared": false,
+    "transactionDate": ""
+  }
+]
+
+### Get all Transactions with valid Account Id
+GET {{baseUrl}}/account/1
+
+### Get All Transactions with invalid Accont Id (Should fail)
+GET {{baseUrl}}/account/9999
+
+### Get Transaction count with valid Account Id
+GET {{baseUrl}}/account/1/count
+
+### Get Transaction count with invalid Account Id (Should fail)
+GET {{baseUrl}}/account/9999/count
+
+### Update Transaction with valid data
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "accountId": 1,
+  "categoryId": 10,
+  "payee": "Employer",
+  "memo": "Your salary for February",
+  "inflowAmount": 150,
+  "outflowAmount": 0,
+  "isCleared": false,
+  "transactionDate": "2026-02-15"
+}
+
+### Update Transaction with not macthing IDs (Should fail)
+PUT {{baseUrl}}/2
+Content-Type: application/json
+
+{
+  "id": 1,
+  "accountId": 1,
+  "categoryId": 10,
+  "payee": "Employer",
+  "memo": "Your salary for February",
+  "inflowAmount": 150,
+  "outflowAmount": 0,
+  "isCleared": false,
+  "transactionDate": "2026-02-15"
+}
+
+### Update Transaction with non existing ID (Should fail)
+PUT {{baseUrl}}/9001
+Content-Type: application/json
+
+{
+  "id": 9001,
+  "accountId": 1,
+  "categoryId": 10,
+  "payee": "Employer",
+  "memo": "Your salary for February",
+  "inflowAmount": 150,
+  "outflowAmount": 0,
+  "isCleared": false,
+  "transactionDate": "2026-02-15"
+}
+
+### Delete transaction
+DELETE {{baseUrl}}/3
+
+### Delete transaction with wrong ID (Should fail)
+DELETE {{baseUrl}}/9001
+
+### Delete transaction that was deleted during request (Should fail)
+DELETE {{baseUrl}}/4
