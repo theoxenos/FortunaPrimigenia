@@ -32,7 +32,7 @@ public class TransactionsController(ITransactionService transactionService) : Co
         return Ok(await transactionService.GetTransactionsByAccountIdAsync(accountId));
     }
 
-    [HttpGet("count/account/{accountId}")]
+    [HttpGet("account/{accountId}/count")]
     public async Task<ActionResult<int>> GetTransactionCountByAccountIdAsync(int accountId)
     {
         return Ok(await transactionService.GetTransactionCountByAccountIdAsync(accountId));
@@ -40,7 +40,7 @@ public class TransactionsController(ITransactionService transactionService) : Co
 
     [HttpPut("{transactionId}")]
     public async Task<ActionResult<Transaction>> UpdateTransactionAsync(int transactionId,
-        [FromBody] Transaction transaction)
+        [FromBody] UpdateTransactionDto transaction)
     {
         if (transactionId != transaction.Id) return BadRequest("Transaction ID does not match route parameter");
 

@@ -104,5 +104,33 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
                 ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc)
             }
         );
+
+        modelBuilder.Entity<Account>().HasData
+        (
+            new Account
+            {
+                Id = 1,
+                Name = "ING Bank",
+                Balance = 1_000,
+                Currency = "EUR",
+                Type = "Checking",
+                CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
+                ModifiedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc)
+            }
+        );
+
+        modelBuilder.Entity<Transaction>().HasData
+        (
+            new Transaction
+            {
+                Id = -1,
+                AccountId = 1,
+                CategoryId = 4,
+                OutflowAmount = 100,
+                Memo = "Dinner for coming week",
+                Payee = "Supermarket",
+                TransactionDate = new DateTime(2026, 3, 3)
+            }
+        );
     }
 }
