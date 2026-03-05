@@ -8,8 +8,8 @@ public interface ITransactionRepository
 {
     Task<Transaction> CreateTransactionAsync(Transaction transaction);
     Task<List<Transaction>> CreateMultipleTransactionsAsync(List<Transaction> transactions);
-    Task<Transaction?> GetTransactionsByIdAsync(int transactionId);
-    Task<List<Transaction>> GetTransactionByAccountIdAsync(int accountId);
+    Task<Transaction?> GetTransactionByIdAsync(int transactionId);
+    Task<List<Transaction>> GetTransactionsByAccountIdAsync(int accountId);
     Task<int> GetTransactionCountByAccountIdAsync(int accountId);
     Task<Transaction?> UpdateTransactionAsync(Transaction transaction);
     Task<bool> DeleteTransactionAsync(int transactionId);
@@ -31,12 +31,12 @@ public class TransactionRepository(FortunaPrimigeniaContext dbContext) : ITransa
         return transactions;
     }
 
-    public async Task<Transaction?> GetTransactionsByIdAsync(int transactionId)
+    public async Task<Transaction?> GetTransactionByIdAsync(int transactionId)
     {
         return await dbContext.Transactions.FindAsync(transactionId);
     }
 
-    public async Task<List<Transaction>> GetTransactionByAccountIdAsync(int accountId)
+    public async Task<List<Transaction>> GetTransactionsByAccountIdAsync(int accountId)
     {
         var transactions = dbContext.Transactions.Where(t => t.AccountId == accountId);
         return await transactions.ToListAsync();
@@ -49,14 +49,9 @@ public class TransactionRepository(FortunaPrimigeniaContext dbContext) : ITransa
 
     public async Task<Transaction?> UpdateTransactionAsync(Transaction transaction)
     {
-        var toUpdateTransaction =
-            await dbContext.Transactions.AsNoTracking().FirstOrDefaultAsync(t => t.Id == transaction.Id);
-        if (toUpdateTransaction is null)
-            return null;
-
-        dbContext.Transactions.Update(toUpdateTransaction);
+        dbContext.Transactions.Update(transaction);
         await dbContext.SaveChangesAsync();
-        return toUpdateTransaction;
+        return transaction;
     }
 
     public async Task<bool> DeleteTransactionAsync(int transactionId)
