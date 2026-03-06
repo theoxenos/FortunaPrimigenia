@@ -16,7 +16,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 1,
-                CategoryName = "Food",
+                Name = "Food",
                 IsActive = true,
                 DisplayOrder = 1,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -25,7 +25,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 2,
-                CategoryName = "Fuel",
+                Name = "Fuel",
                 IsActive = true,
                 DisplayOrder = 2,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -34,7 +34,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 3,
-                CategoryName = "Entertainment",
+                Name = "Entertainment",
                 IsActive = true,
                 DisplayOrder = 3,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -43,7 +43,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 4,
-                CategoryName = "Groceries",
+                Name = "Groceries",
                 IsActive = true,
                 DisplayOrder = 4,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -52,7 +52,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 5,
-                CategoryName = "Health",
+                Name = "Health",
                 IsActive = true,
                 DisplayOrder = 5,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -61,7 +61,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 6,
-                CategoryName = "Education",
+                Name = "Education",
                 IsActive = true,
                 DisplayOrder = 6,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -70,7 +70,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 7,
-                CategoryName = "Household Goods",
+                Name = "Household Goods",
                 IsActive = true,
                 DisplayOrder = 7,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -79,7 +79,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 8,
-                CategoryName = "Other",
+                Name = "Other",
                 IsActive = true,
                 DisplayOrder = 8,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -88,7 +88,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 9,
-                CategoryName = "Income This Month",
+                Name = "Income This Month",
                 IsActive = true,
                 DisplayOrder = 9,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
@@ -97,7 +97,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
             new Category
             {
                 Id = 10,
-                CategoryName = "Income Next Month",
+                Name = "Income Next Month",
                 IsActive = true,
                 DisplayOrder = 10,
                 CreatedDate = new DateTime(2026, 3, 3, 8, 0, 0, DateTimeKind.Utc),
