@@ -121,16 +121,7 @@ public class FortunaPrimigeniaContext(DbContextOptions<FortunaPrimigeniaContext>
 
         modelBuilder.Entity<Transaction>().HasData
         (
-            new Transaction
-            {
-                Id = -1,
-                AccountId = 1,
-                CategoryId = 4,
-                OutflowAmount = 100,
-                Memo = "Dinner for coming week",
-                Payee = "Supermarket",
-                TransactionDate = new DateTime(2026, 3, 3)
-            }
+            DataSeeder.GenerateTransactions()
         );
     }
 }
