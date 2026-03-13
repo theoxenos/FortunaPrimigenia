@@ -2,6 +2,14 @@
 
 FortunaPrimigenia is a professional budget tracking application built with **ASP.NET Core 10.0**. It provides a robust API to manage accounts, categories, and transactions, enabling users to track their financial health efficiently.
 
+## 🎯 Motivation
+
+Many years ago I bought the budget app **You Need a Budget**. Sadly they stopped supporting the app in favor of a subscription based SaaS. I want to keep my subscriptions to a minimum, so I never made use of it.
+
+Functionality wise it still works great. However it has no out of the box Linux support. It has some problems like the import feature not being compatible with my the export of my bank. And some other smaller things that are common with propriety software.
+
+There are many alternatives, some even open source. But none of them have the complete feature set that YNAB has. Therefor I decided to make my own. The aim is to keep the feature set and feel of the app as close to the original as possible. While keeping it open source.
+
 ## 🚀 Features
 
 - **Account Management**: Track different bank accounts and their balances.
