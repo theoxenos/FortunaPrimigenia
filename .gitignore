@@ -56,9 +56,10 @@ nunit-*.xml
 **/.idea
 **/.vscode
 
+*.user
+
 # SQLite
-*.sqlite
-*.sqlite3
+*.sqlite*
 *.db
 
 # SQL Server

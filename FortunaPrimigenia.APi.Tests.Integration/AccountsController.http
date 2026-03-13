@@ -1,0 +1,115 @@
+@baseUrl = http://localhost:5296
+
+### Create Account With Valid Data
+POST {{baseUrl}}/Accounts
+Content-Type: application/json
+
+{
+  "Name": "Checking Account2",
+  "Balance": 1000.50,
+  "Currency": "USD",
+  "Type": "Checking",
+  "IsOnBudget": true
+}
+
+### Create Account With No Data (Should fail - validation)
+POST {{baseUrl}}/Accounts
+Content-Type: application/json
+
+{}
+
+### Create Account With Name Too Short (Should fail - validation)
+POST {{baseUrl}}/Accounts
+Content-Type: application/json
+
+{
+  "Name": "A",
+  "Balance": 1000.50,
+  "Currency": "USD",
+  "Type": "Checking"
+}
+
+### Create Account With Negative Balance (Should fail - validation)
+POST {{baseUrl}}/Accounts
+Content-Type: application/json
+
+{
+  "Name": "Negative Account",
+  "Balance": -100,
+  "Currency": "USD",
+  "Type": "Checking"
+}
+
+### Create Account With Invalid Currency (Should fail - validation)
+POST {{baseUrl}}/Accounts
+Content-Type: application/json
+
+{
+  "Name": "Invalid Currency",
+  "Balance": 100,
+  "Currency": "US",
+  "Type": "Checking"
+}
+
+### Create Account With Duplicate Name (Should fail - service logic)
+POST {{baseUrl}}/Accounts
+Content-Type: application/json
+
+{
+  "Name": "Checking Account2",
+  "Balance": 500,
+  "Currency": "USD",
+  "Type": "Checking"
+}
+
+### Get All Accounts
+GET {{baseUrl}}/Accounts
+
+### Get Account By ID
+GET {{baseUrl}}/Accounts/1
+
+### Update Account (Valid)
+PUT {{baseUrl}}/Accounts/1
+Content-Type: application/json
+
+{
+  "Id": 1,
+  "Name": "Checking Account2 Updated",
+  "Balance": 1100.00,
+  "Currency": "USD",
+  "Type": "Checking",
+  "IsOnBudget": true
+}
+
+### Update Account With Mismatched ID (Should fail)
+PUT {{baseUrl}}/Accounts/1
+Content-Type: application/json
+
+{
+  "Id": 2,
+  "Name": "Mismatched Account",
+  "Balance": 1100.00,
+  "Currency": "USD",
+  "Type": "Checking"
+}
+
+### Update Non-Existent Account (Should return 404)
+PUT {{baseUrl}}/Accounts/999
+Content-Type: application/json
+
+{
+  "Id": 999,
+  "Name": "Ghost Account",
+  "Balance": 1100.00,
+  "Currency": "USD",
+  "Type": "Checking"
+}
+
+### Delete with wrong ID (0)
+DELETE {{baseUrl}}/Accounts/0
+
+### Delete non-existent ID (999)
+DELETE {{baseUrl}}/Accounts/999
+
+### Delete valid ID (1)
+DELETE {{baseUrl}}/Accounts/1

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortunaPrimigenia.Api", "FortunaPrimigenia.Api\FortunaPrimigenia.Api.csproj", "{489DE37A-C0DB-4499-B812-334A0D26EF99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortunaPrimigenia.Api.Tests.Unit", "FortunaPrimigenia.Api.Tests.Unit\FortunaPrimigenia.Api.Tests.Unit.csproj", "{11D1C471-E490-4C29-A4AA-006385667516}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortunaPrimigenia.APi.Tests.Integration", "FortunaPrimigenia.APi.Tests.Integration\FortunaPrimigenia.APi.Tests.Integration.csproj", "{7D45BF1C-F396-4753-A852-5E5BC02164CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{489DE37A-C0DB-4499-B812-334A0D26EF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{489DE37A-C0DB-4499-B812-334A0D26EF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{489DE37A-C0DB-4499-B812-334A0D26EF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{489DE37A-C0DB-4499-B812-334A0D26EF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D1C471-E490-4C29-A4AA-006385667516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D1C471-E490-4C29-A4AA-006385667516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D1C471-E490-4C29-A4AA-006385667516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D1C471-E490-4C29-A4AA-006385667516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D45BF1C-F396-4753-A852-5E5BC02164CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D45BF1C-F396-4753-A852-5E5BC02164CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D45BF1C-F396-4753-A852-5E5BC02164CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D45BF1C-F396-4753-A852-5E5BC02164CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
