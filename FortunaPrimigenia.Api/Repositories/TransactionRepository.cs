@@ -38,7 +38,10 @@ public class TransactionRepository(FortunaPrimigeniaContext dbContext) : ITransa
 
     public async Task<List<Transaction>> GetTransactionsByAccountIdAsync(int accountId)
     {
-        var transactions = dbContext.Transactions.Where(t => t.AccountId == accountId);
+        var transactions = dbContext.Transactions
+            .Where(t => t.AccountId == accountId)
+            .OrderBy(t => t.TransactionDate)
+            .Include(t => t.Category);
         return await transactions.ToListAsync();
     }
 
